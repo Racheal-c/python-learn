@@ -15,5 +15,10 @@ tmp = list()
 for k, v in a.items() :
     tmp.append( (v,k) )
 print (tmp)
+#reverse=True is descending oder
 tmp = sorted(tmp, reverse=True)
 print(tmp) 
+
+#Even shorter version
+d = {'a':10, 'b':1, 'c':20}
+print(sorted( {(v,k) for k,v in d.items() } ) )
