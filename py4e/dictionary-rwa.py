@@ -4,27 +4,34 @@
 # The program creates a Python dictionary that maps the sender's mail address to a count of the number of times 
 # they appear in the file. After the dictionary is produced,
 # the program reads through the dictionary using a maximum loop to find the most prolific committer.
+import os
 
+script_path = os.path.abspath(__file__)
+script_directory = os.path.dirname(script_path)
+print(script_directory)
 fname = input("Enter file name: ")
-fh = open(fname)
 
-email_list = list()
-for lines in fh:
-    if lines.startswith('From'):
-        words = lines.split()
-        emails = words [1]
-        email_list.append(emails)
+try:
+    with open(fname) as fh:
+        email_list = list()
+        for line in fh:
+            if line.startswith('From'):
+                words = line.split()
+                email = words[1]
+                email_list.append(email)
 
-histogram = dict()
-for email in email_list:
-    histogram[email] = histogram.get(email,0) + 1
+        histogram = dict()
+        for email in email_list:
+            histogram[email] = histogram.get(email, 0) + 1
 
-largest = None
-count = None
-for k, v in histogram.items():
-    if count is None or v > count:
-        count = v
-        largest = k
+        largest = None
+        count = None
+        for k, v in histogram.items():
+            if count is None or v > count:
+                count = v
+                largest = k
 
-print(largest,count)
+        print(largest, count)
 
+except FileNotFoundError:
+    print("File not found.")
