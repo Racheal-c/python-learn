@@ -1,5 +1,5 @@
 {
     "search.useIgnoreFiles": true,
-    "search.useParentIgnoreFiles": true,
-    "search.useGlobalIgnoreFiles": true
+    "search.useParentIgnoreFiles": false,
+    "search.useGlobalIgnoreFiles": false
 }
